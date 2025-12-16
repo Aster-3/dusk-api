@@ -1,0 +1,38 @@
+services:
+  node-server:
+    depends_on:
+      database:
+        condition: service_healthy
+    build: .
+    image: dusk-api
+    # restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      DB_HOST: database
+      DB_USER: postgres
+      DB_PASSWORD: İzmir1922
+      DB_NAME: dusk
+  database:
+    image: postgres:18
+    restart: unless-stopped
+    shm_size: 256mb
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: İzmir1922
+      POSTGRES_DB: dusk
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+volumes:
+  postgres-data:
