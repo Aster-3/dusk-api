@@ -14,8 +14,9 @@ services:
     environment:
       DB_HOST: database
       DB_USER: postgres
-      DB_PASSWORD: İzmir1922
+      DB_PASSWORD: Izmir1922
       DB_NAME: dusk
+      DATABASE_URL: postgresql://postgres:Izmir1922@database:5432/dusk?schema=public
   database:
     image: postgres:18
     restart: unless-stopped
@@ -26,7 +27,7 @@ services:
       - 5432:5432
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: İzmir1922
+      POSTGRES_PASSWORD: Izmir1922
       POSTGRES_DB: dusk
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]

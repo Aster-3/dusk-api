@@ -22,6 +22,10 @@
     "declaration": true,
     "declarationMap": true,
 
+    // TypeORM Settins
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
