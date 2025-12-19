@@ -1,18 +1,10 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  JoinTable,
-  ManyToMany,
-  OneToMany,
-  OneToOne,
-} from "typeorm";
+import { Column, Entity, Index, OneToMany, OneToOne } from "typeorm";
 import { BaseEntity } from "./_base-entity.js";
 import { AnimeDetail } from "./anime-details.js";
 import { ComicDetail } from "./comic-details.js";
 import { NovelDetail } from "./novel-details.js";
 import { Organization } from "./organization.js";
+import { Volume } from "./volume.js";
 
 export enum SeriesStatus {
   ONGOING = "ongoing",
@@ -96,5 +88,8 @@ export class Series extends BaseEntity {
   novelDetails?: NovelDetail;
 
   @OneToMany(() => Organization, (organization) => organization.series)
-  organizations!: Organization[];
+  organizations?: Organization[];
+
+  @OneToMany(() => Volume, (volume) => volume.series)
+  volumes?: Volume[];
 }
