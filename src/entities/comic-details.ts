@@ -6,7 +6,7 @@ import {
   OneToOne,
   PrimaryColumn,
 } from "typeorm";
-import { Series } from "./Series.js";
+import { Series } from "./series.js";
 
 export enum ComicFormat {
   MANGA = "manga",

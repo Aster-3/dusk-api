@@ -6,7 +6,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Series } from "./Series.js";
+import { Series } from "./series.js";
 import { Chapter } from "./chapter.js";
 
 @Entity("volumes")

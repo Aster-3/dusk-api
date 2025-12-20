@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Series } from "./Series.js";
+import { Series } from "./series.js";
 
 export enum OrganizationType {
   STUDIO = "studio",

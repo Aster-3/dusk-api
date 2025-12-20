@@ -1,5 +1,5 @@
 import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import { Series } from "./Series.js";
+import { Series } from "./series.js";
 import { Organization } from "./organization.js";
 
 @Entity("series_organization")
