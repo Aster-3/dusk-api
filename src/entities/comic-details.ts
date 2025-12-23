@@ -28,6 +28,6 @@ export class ComicDetail {
   @Column({ type: "enum", enum: ComicFormat, enumName: "comic_format_enum" })
   format!: ComicFormat;
 
-  @Column()
+  @Column({ type: "varchar", length: 255 })
   illustrator?: string;
 }

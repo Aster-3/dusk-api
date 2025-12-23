@@ -2,13 +2,13 @@ import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { Series } from "./series.js";
 import { Organization } from "./organization.js";
 
-@Entity("series_organization")
+@Entity("series_organizations")
 export class SeriesOrganizations {
   @PrimaryColumn("uuid")
   series_id!: string;
 
-  @PrimaryColumn("int")
-  organization_id!: number;
+  @PrimaryColumn("uuid")
+  organization_id!: string;
 
   @ManyToOne(() => Series, (series) => series.organizations, {
     onDelete: "CASCADE",
@@ -16,9 +16,13 @@ export class SeriesOrganizations {
   @JoinColumn({ name: "series_id", referencedColumnName: "id" })
   series!: Series;
 
-  @ManyToOne(() => Organization, (organization) => organization.series, {
-    onDelete: "CASCADE",
-  })
+  @ManyToOne(
+    () => Organization,
+    (organization) => organization.seriesOrganizations,
+    {
+      onDelete: "CASCADE",
+    }
+  )
   @JoinColumn({ name: "organization_id", referencedColumnName: "id" })
   organization!: Organization;
 }

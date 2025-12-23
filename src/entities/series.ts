@@ -3,8 +3,11 @@ import { BaseEntity } from "./_base-entity.js";
 import { AnimeDetail } from "./anime-details.js";
 import { ComicDetail } from "./comic-details.js";
 import { NovelDetail } from "./novel-details.js";
-import { Organization } from "./organization.js";
 import { Volume } from "./volume.js";
+import { Episode } from "./episode.js";
+import { SeriesGenres } from "./series_genres.js";
+import { SeriesOrganizations } from "./series_organizations.js";
+import { Like } from "./like.js";
 
 export enum SeriesStatus {
   ONGOING = "ongoing",
@@ -39,6 +42,10 @@ export class Series extends BaseEntity {
   @Index("idx_series_romanized_title")
   @Column({ name: "romanized_title", type: "varchar", length: 500 })
   romanizedTitle!: string;
+
+  @Index("idx_series_slug", { unique: true })
+  @Column({ type: "varchar", length: 500 })
+  slug!: string;
 
   @Index("idx_series_content_type")
   @Column({
@@ -87,9 +94,18 @@ export class Series extends BaseEntity {
   })
   novelDetails?: NovelDetail;
 
-  @OneToMany(() => Organization, (organization) => organization.series)
-  organizations?: Organization[];
+  @OneToMany(() => SeriesOrganizations, (so) => so.series)
+  organizations?: SeriesOrganizations[];
 
   @OneToMany(() => Volume, (volume) => volume.series)
   volumes?: Volume[];
+
+  @OneToMany(() => Episode, (episode) => episode.series)
+  episodes?: Episode[];
+
+  @OneToMany(() => SeriesGenres, (sg) => sg.series)
+  genres?: SeriesGenres[];
+
+  @OneToMany(() => Like, (like) => like.series)
+  likes!: Like[];
 }

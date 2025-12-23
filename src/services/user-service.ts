@@ -1,9 +1,21 @@
 import { UserRepository } from "../repositories/user-repository.js";
+import { uuidv7 } from "uuidv7";
 export class UserService {
   private userRepo = new UserRepository();
 
-  createUser = async (name: string, email: string) => {
-    return this.userRepo.create({ name, email });
+  createUser = async (
+    username: string,
+    nickname: string,
+    email: string,
+    countryId: string
+  ) => {
+    return this.userRepo.create({
+      id: uuidv7(),
+      username,
+      nickname,
+      email,
+      country: { id: countryId },
+    });
   };
 
   findAllUsers = async () => {

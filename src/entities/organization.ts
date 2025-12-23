@@ -1,11 +1,5 @@
-import {
-  Column,
-  Entity,
-  Index,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { Series } from "./series.js";
+import { Column, Entity, Index, OneToMany, PrimaryColumn } from "typeorm";
+import { SeriesOrganizations } from "./series_organizations.js";
 
 export enum OrganizationType {
   STUDIO = "studio",
@@ -15,8 +9,8 @@ export enum OrganizationType {
 
 @Entity("organizations")
 export class Organization {
-  @PrimaryGeneratedColumn("increment")
-  id!: number;
+  @PrimaryColumn("uuid")
+  id!: string;
 
   @Index("idx_organization_name", { unique: true })
   @Column({ type: "varchar", length: 255 })
@@ -49,6 +43,6 @@ export class Organization {
   })
   coverImageUrl?: string;
 
-  @OneToMany(() => Series, (series) => series.organizations)
-  series!: Series;
+  @OneToMany(() => SeriesOrganizations, (so) => so.organization)
+  seriesOrganizations!: SeriesOrganizations[];
 }

@@ -1,18 +1,20 @@
 import {
   Column,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
 } from "typeorm";
 import { Series } from "./series.js";
 import { Chapter } from "./chapter.js";
 
 @Entity("volumes")
+@Index("idx_volumes_series_id", ["series"])
 export class Volume {
-  @PrimaryGeneratedColumn("increment")
-  id!: number;
+  @PrimaryColumn("uuid")
+  id!: string;
 
   @Column({ type: "varchar", length: 255 })
   title!: string;

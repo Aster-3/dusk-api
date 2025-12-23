@@ -24,9 +24,6 @@ export class AnimeDetail {
   @JoinColumn({ name: "series_id", referencedColumnName: "id" })
   series!: Series;
 
-  @Column({ name: "episode_count", type: "int", nullable: true })
-  episodeCount?: number;
-
   @Index("idx_anime_details_format")
   @Column({ type: "enum", enum: AnimeFormat, enumName: "anime_format_enum" })
   format!: AnimeFormat;
