@@ -15,8 +15,6 @@ export class BaseRepository<T extends ObjectLiteral> {
   };
 
   findById = async (id: string): Promise<T | null> => {
-    return this.repository.findOneBy({
-      where: { id } as any,
-    });
+    return this.repository.findOneBy({ id } as any);
   };
 }

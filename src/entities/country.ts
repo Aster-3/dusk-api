@@ -1,10 +1,16 @@
-import { Column, Entity, Index, OneToMany, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { User } from "./user.js";
 
 @Entity("countries")
 export class Country {
-  @PrimaryColumn("uuid")
-  id!: string;
+  @PrimaryGeneratedColumn("increment")
+  id!: number;
 
   @Index("idx_countries_name", { unique: true })
   @Column({ type: "varchar", length: 255 })

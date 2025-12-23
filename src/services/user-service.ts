@@ -7,7 +7,7 @@ export class UserService {
     username: string,
     nickname: string,
     email: string,
-    countryId: string
+    countryId: number
   ) => {
     return this.userRepo.create({
       id: uuidv7(),
