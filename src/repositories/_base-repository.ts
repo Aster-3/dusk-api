@@ -4,9 +4,7 @@ export class BaseRepository<T extends ObjectLiteral> {
   constructor(protected readonly repository: Repository<T>) {}
 
   create = async (data: DeepPartial<T>): Promise<T> => {
-    console.log("Data: ", data);
     const entity = this.repository.create(data);
-    console.log("Entity: ", entity);
     return this.repository.save(entity);
   };
 

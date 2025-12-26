@@ -2,7 +2,7 @@ import express from "express";
 import "reflect-metadata";
 
 // ROUTES
-import basePathRoute from "./routes/baseRoute.js";
+import v0Routes from "./routes/v0/index.js";
 import v1Routes from "./routes/v1/index.js";
 
 // DB CONNECTION
@@ -14,7 +14,7 @@ app.use(express.json());
 await AppDataSource.initialize();
 
 app.use("/v1", v1Routes);
-app.use("/", basePathRoute);
+app.use("/", v0Routes);
 
 app.listen(3000, () => {
   console.log("Dusk Api Running at Port 3000");

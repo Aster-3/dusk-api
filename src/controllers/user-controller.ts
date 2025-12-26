@@ -8,9 +8,16 @@ export class UserController {
   getAll = async (req: Request, res: Response) => {
     try {
       const users = await userService.findAllUsers();
+      const { id, title, type } = req.query;
+      if (id) {
+        throw new Error("İd is Not a Query Parameter!");
+      }
+      console.log(title, type);
+      if (title) console.log("var");
+      console.log(typeof title, typeof type);
       res.status(200).json(users);
-    } catch (error) {
-      res.status(500).json({ message: "Internal Server Error", error });
+    } catch (error: any) {
+      res.status(500).json("Hata: " + error.stack);
     }
   };
 
